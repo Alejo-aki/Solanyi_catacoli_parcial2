@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Maquina Virtual "servidor1" - Actuara como Firewall (UFW)
+  config.vm.define :servidor1 do |srv1|
+    srv1.vm.box = "bento/ubuntu-22.04"
+    srv1.vm.network "private_network", ip: "192.168.50.5"
+    srv1.vm.hostname = "servidor1"
+  end
+
+  # Maquina Virtual "servidor2" - Servidor FTP Seguro (vsftpd con SSL/TLS)
+  config.vm.define :servidor2 do |srv2|
+    srv2.vm.box = "bento/ubuntu-22.04"
+    srv2.vm.network "private_network", ip: "192.168.50.4"
+    srv2.vm.hostname = "servidor2"
+  end
+
+end
